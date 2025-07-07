@@ -460,7 +460,7 @@ df_metricas_analise = df_orders_gold.groupBy("customer_id").agg(
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC Perfil do Cliente segmentando por horário do pedido
+# MAGIC Segmentação por horário do pedido
 # MAGIC
 # MAGIC
 
@@ -523,7 +523,7 @@ df_resultado.display()
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC Perfil do Cliente segmentado por dia da semana/pedido
+# MAGIC Segmentação por dia da semana/pedido
 # MAGIC
 
 # COMMAND ----------
@@ -557,7 +557,7 @@ df_segmento_dia = df_tipo_dia.withColumn("rank", row_number().over(window_dia)) 
 
 # COMMAND ----------
 
-# Resultado da segmentação por horário do pedido
+# Resultado da segmentação por dia do pedido
 df_final = df_metricas_analise.join(df_segmento_dia, on="customer_id", how="left")
 
 df_resultado_dia = df_final.groupBy("segmento_dia_preferido", "grupo_ab").agg(
